@@ -26,6 +26,10 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
 
+app.get(['/'], (req, res) => {
+  res.json({ message: 'ok' });
+});
+
 app.use(routes());
 app.use(errorHandler);
 
