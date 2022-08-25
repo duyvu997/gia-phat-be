@@ -1,5 +1,43 @@
-const authenticate = (req, res, next) => {
-  next();
+const jwt = require("jsonwebtoken");
+const { TOKEN_ERROR_TYPE, TOKEN_ERROR_MSG } = require("../constants/jwt");
+const { User } = require("../models");
+
+const authenticate = async (req, res, next) => {
+  try {
+    const token =
+      (req.headers.authorization &&
+        req.headers.authorization.replace("Bearer ", "")) ||
+      req.query.auth;
+
+    const decoded = verifyToken(token);
+    const user = await User.findOne({ id: decoded.userId });
+    req.decodedUser = { ...user, userId: decoded.userId };
+  } catch (error) {
+    const errorMsg =
+      error.name === TOKEN_ERROR_TYPE.EXPIRE
+        ? TOKEN_ERROR_MSG.TOKEN_EXPIRED
+        : TOKEN_ERROR_MSG.INVALID;
+    return res.status(401).json({ message: errorMsg });
+  }
+
+  return next();
 };
 
-module.exports = { authenticate };
+const verifyToken = (token) => {
+  if (!token) {
+    throw new Error("A token is required for authentication");
+  }
+  return jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+};
+
+const generateToken = (payload) => {
+  return jwt.sign(payload, process.env.TOKEN_SECRET_KEY, {
+    expiresIn: process.env.REFRESH_TOKEN_EXPIRE_INTERVAL || "30d",
+  });
+};
+
+const generateCode = (length = 6) => {
+  return (Math.floor(Math.random() * Math.pow(10, length)) + Math.pow(10, length)).toString().substring(1);
+}
+
+module.exports = { authenticate, verifyToken, generateToken, generateCode };

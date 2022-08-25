@@ -5,12 +5,14 @@ const app = express();
 const server = require('http').Server(app);
 const cors = require('cors');
 const errorHandler = require('./middlewares/error-handler');
+const logResponseBody = require('./middlewares/logger');
 const routes = require('./routes');
 require('./db/database');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 console.log('[setup] using environment', process.env.NODE_ENV);
+
 require('dotenv').config(
   process.env.NODE_ENV === 'heroku'
     ? {}
@@ -31,7 +33,8 @@ app.get(['/'], (req, res) => {
 });
 
 app.use(routes());
-app.use(errorHandler);
+app.use(errorHandler.all);
+app.use(logResponseBody.all);
 
 server.listen(PORT, function () {
   console.log(`[setup] app started on port ${PORT}`);

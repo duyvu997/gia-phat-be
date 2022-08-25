@@ -20,12 +20,15 @@
   "homepage": "https://github.com/duyvu997/express-init-template#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "cuid": "^2.1.8",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "express": "^4.17.1",
     "express-promise-router": "^4.1.1",
     "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^2.2.0",
     "pg": "^8.7.1"
   },
