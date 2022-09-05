@@ -3,12 +3,20 @@
 const bcrypt = require('bcrypt');
 const createGuts = require('../model-guts');
 
-const name = 'User';
-const tableName = 'users';
+const name = 'Employee';
+const tableName = 'employees';
 const selectableProps = [
   'id',
   'username',
-  'email'
+  'password',
+  'first_name',
+  'last_name',
+  'full_name',
+  'phone',
+  'birthday',
+  'role',
+  'joined_date',
+  'avatar',
 ];
 
 module.exports = (knex) => {

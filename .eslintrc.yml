@@ -6,7 +6,4 @@ extends: standard
 overrides: []
 parserOptions:
   ecmaVersion: latest
-rules: {
-  "semi": [2, "always"],
-  "comma-dangle": "off",
-}
+rules: { 'semi': [2, 'always'], 'comma-dangle': 'off', 'camelcase': 'off' }
