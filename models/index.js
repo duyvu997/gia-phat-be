@@ -12,8 +12,8 @@ const getModelFiles = (dir) => {
 };
 
 const initAllModels = () => {
-  const files = getModelFiles(`${__dirname}/db-entities`);
-  
+  const files = getModelFiles(path.join(__dirname, '/db-entities'));
+
   return files.reduce((modelsObject, filename) => {
     const initModel = require(filename);
     const model = initModel(knex);

@@ -6,16 +6,15 @@ const getActualRequestDurationInMilliseconds = (start) => {
 };
 
 const customLogger = (req, res, next) => {
-  //middleware function
-  let current_datetime = new Date();
+  // middleware function
 
-  let method = req.method;
-  let url = req.url;
+  const method = req.method;
+  const url = req.url;
   const cloneBody = JSON.parse(JSON.stringify(req.body));
-  let status = res.statusCode;
+  const status = res.statusCode;
   const start = process.hrtime();
   const durationInMilliseconds = getActualRequestDurationInMilliseconds(start);
-  let log = `[${method}:${url} ${status} ${durationInMilliseconds.toLocaleString()} ms`;
+  const log = `[${method}:${url} ${status} ${durationInMilliseconds.toLocaleString()} ms`;
   delete cloneBody.password;
 
   console.log(log, cloneBody);
@@ -50,8 +49,6 @@ const exportableHandlers = {
   customLogger,
   logResponseBody,
 };
-
-
 
 // All exportable stored as an array (e.g., for including in Express app.use())
 const all = Object.keys(exportableHandlers).map(

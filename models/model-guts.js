@@ -1,7 +1,7 @@
 module.exports = ({
   knex = {},
-  name = "name",
-  tableName = "table-name",
+  name = 'name',
+  tableName = 'table-name',
   selectableProps = [],
   timeout = 1000,
 }) => {
@@ -45,7 +45,7 @@ module.exports = ({
   const destroy = (id) =>
     knex.del().from(tableName).where({ id }).timeout(timeout);
 
-  async function batchUpdate(table, id, collection) {
+  async function batchUpdate (table, id, collection) {
     return knex.transaction((trx) => {
       const queries = collection.map(async (tuple) => {
         const [tupleId] = await knex(table)

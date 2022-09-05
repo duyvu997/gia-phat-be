@@ -5,35 +5,39 @@ const getMe = (req, res, next) => {
 const getAll = (req, res, next) => {
   const data = [
     {
-      id: 1,name: 'MINH',
+      id: 1,
+      name: 'MINH',
       phone: '0337282282',
       role: 'none',
       avatar: 'http://localhost:3000/avatar.jpg',
       join_date: '20/07/2022',
     },
     {
-      id: 2,name: 'PHONG',
+      id: 2,
+      name: 'PHONG',
       phone: '0337282282',
       role: 'none',
       avatar: 'http://localhost:3000/avatar',
       join_date: '20/07/2022',
     },
     {
-      id: 3,name: 'DUY',
+      id: 3,
+      name: 'DUY',
       phone: '0337282282',
       role: 'none',
       avatar: 'http://localhost:3000/avatar',
       join_date: '20/07/2022',
     },
     {
-      id: 4,name: 'DU',
+      id: 4,
+      name: 'DU',
       phone: '0337282282',
       role: 'none',
       avatar: 'http://localhost:3000/avatar',
       join_date: '20/07/2022',
     },
   ];
-  return res.status(200).json({ data: data });
+  return res.status(200).json({ data });
 };
 
 const login = (req, res, next) => {
