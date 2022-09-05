@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "NODE_ENV=development nodemon server.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+      "db:migrate-up": "npx knex --knexfile knexfile.js migrate:up --env ${NODE_ENV:=development}",
+    "db:migrate-down": "npx knex --knexfile knexfile.js migrate:down --env ${NODE_ENV:=development}"
   },
   "repository": {
     "type": "git",
