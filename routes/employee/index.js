@@ -1,9 +1,9 @@
 const userController = require('./employee-controller');
 const Router = require('express-promise-router');
 const router = new Router();
-const { authenticate } = require('../../middlewares/authentication');
+// const { authenticate } = require('../../middlewares/authentication');
 
-router.get('/me', authenticate, userController.getMe);
+router.get('/me', userController.getMe);
 router.get('/', userController.getAll);
 router.post('/', userController.create);
 router.patch('/:employeeId', userController.update);
