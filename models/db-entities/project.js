@@ -16,8 +16,6 @@ const selectableProps = [
   'staffs',
   'supplies',
   'phases',
-  'staffs',
-  'staffs',
   'status',
 ];
 
